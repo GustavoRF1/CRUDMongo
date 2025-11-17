@@ -97,10 +97,18 @@ namespace CRUDMongo.Services
 
             var autor = collectionAuthors.Find(a => a.Id == id).FirstOrDefault();
 
+            string nome, pais;
+
             Console.WriteLine("Digite o novo nome do autor: ");
-            string nome = Console.ReadLine() ?? autor.Name;
+            string nomeDigitado = Console.ReadLine();
+
+            nome = string.IsNullOrEmpty(nomeDigitado) ? autor.Name : nomeDigitado;
+
             Console.WriteLine("Digite o novo país do autor: ");
-            string pais = Console.ReadLine() ?? autor.Country;
+            string paisDigitado = Console.ReadLine();
+
+            pais = string.IsNullOrEmpty(paisDigitado) ? autor.Country : paisDigitado;
+
             var update = Builders<Authors>.Update
                 .Set(a => a.Name, nome)
                 .Set(a => a.Country, pais);

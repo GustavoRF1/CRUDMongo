@@ -103,7 +103,10 @@ namespace CRUDMongo.Services
                 return;
             }
             Console.WriteLine("Digite o novo título do livro: ");
-            string titulo = Console.ReadLine() ?? livro.Title;
+            string tituloDigitado = Console.ReadLine() ?? livro.Title;
+
+            string titulo = string.IsNullOrEmpty(tituloDigitado) ? livro.Title : tituloDigitado;
+
             Console.WriteLine("Digite o novo Id do autor: ");
             string idAutor = Console.ReadLine() ?? livro.AuthorId;
             if (!authorsServices.ValidarAutor(idAutor))
