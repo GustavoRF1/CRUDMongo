@@ -16,15 +16,15 @@ documentos no MongoDB.
 
 ## 📂 Estrutura das Collections
 
-### Authors
+### **Authors**
 
   Campo     Tipo       Descrição
-  --------- ---------- ---------------------
-  Id        ObjectId   Identificador único
+  --------- ---------- --------------------------------------------
+  Id        ObjectId   Identificador único gerado automaticamente
   Name      string     Nome do autor
   Country   string     País de origem
 
-### Books
+### **Books**
 
   Campo      Tipo       Descrição
   ---------- ---------- ---------------------
@@ -32,6 +32,8 @@ documentos no MongoDB.
   Title      string     Título do livro
   AuthorId   ObjectId   Referência ao autor
   Year       int        Ano de publicação
+
+------------------------------------------------------------------------
 
 ## 🧠 Funcionalidades Implementadas (CRUD)
 
