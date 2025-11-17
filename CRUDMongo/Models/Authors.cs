@@ -25,9 +25,9 @@ namespace CRUDMongo.Models
 
         public override string? ToString()
         {
-            return $"Author Id={Id}\n"+
-                $"Name={Name}\n" +
-                $"Country={Country}";
+            return $"ID do Autor: {Id}\n"+
+                $"Nome: {Name}\n" +
+                $"País: {Country}";
         }
     }
 }

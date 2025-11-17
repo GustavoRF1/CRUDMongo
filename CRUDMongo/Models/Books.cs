@@ -26,10 +26,10 @@ namespace CRUDMongo.Models
 
         public override string? ToString()
         {
-            return $"Book Id={Id}\n" +
-                $"Title={Title}\n" +
-                $"AuthorId={AuthorId}\n" +
-                $"Year={Year}";
+            return $"ID do Livro: {Id}\n" +
+                $"Título: {Title}\n" +
+                $"ID do Autor: {AuthorId}\n" +
+                $"Ano de publicação: {Year}";
         }
     }
 }

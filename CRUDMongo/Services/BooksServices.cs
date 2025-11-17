@@ -16,7 +16,7 @@ namespace CRUDMongo.Services
             this.authorsServices = authorsServices;
         }
 
-        public void AdicionarLivro()
+        public async void AdicionarLivro()
         {
             Console.WriteLine("Digite o título do livro: ");
             string titulo = Console.ReadLine();
@@ -29,12 +29,10 @@ namespace CRUDMongo.Services
             Console.WriteLine("Digite o ano de publicação: ");
             int ano = int.Parse(Console.ReadLine());
             Books livro = new Books(titulo, idAutor, ano);
-            collectionBooks.InsertOne(livro);
-            Console.WriteLine("Livro adicionado!");
-            Console.ReadKey();
+            await collectionBooks.InsertOneAsync(livro);
         }
 
-        public void MultiplosLivros()
+        public async void MultiplosLivros()
         {
             Console.WriteLine("Digite a quantidade de livros que deseja adicionar: ");
             int quantidade = int.Parse(Console.ReadLine());
@@ -61,17 +59,15 @@ namespace CRUDMongo.Services
 
             foreach (var livro in livros)
             {
-                collectionBooks.InsertOne(livro);
+                await collectionBooks.InsertOneAsync(livro);
             }
-            Console.WriteLine("Livros adicionados!");
-            Console.ReadKey();
         }
 
-        public void ListarUmLivro()
+        public async void ListarUmLivro()
         {
             Console.WriteLine("Digite o Id do livro: ");
             string id = Console.ReadLine();
-            var livro = collectionBooks.Find(b => b.Id == id).FirstOrDefault();
+            var livro = await collectionBooks.FindAsync(b => b.Id == id).Result.FirstOrDefaultAsync();
             if (livro == null)
             {
                 Console.WriteLine("Livro não encontrado!");
@@ -81,9 +77,9 @@ namespace CRUDMongo.Services
             Console.ReadKey();
         }
 
-        public void ListarTodosLivros()
+        public async void ListarTodosLivros()
         {
-            var livros = collectionBooks.Find(_ => true).ToList();
+            var livros = await collectionBooks.FindAsync(_ => true).Result.ToListAsync();
             foreach (var livro in livros)
             {
                 Console.WriteLine($"{livro}\n");
@@ -91,12 +87,12 @@ namespace CRUDMongo.Services
             Console.ReadKey();
         }
 
-        public void AtualizarLivro()
+        public async void AtualizarLivro()
         {
             int ano;
             Console.WriteLine("Digite o Id do livro que deseja atualizar: ");
             string id = Console.ReadLine();
-            var livro = collectionBooks.Find(b => b.Id == id).FirstOrDefault();
+            var livro = await collectionBooks.FindAsync(b => b.Id == id).Result.FirstOrDefaultAsync();
             if (livro == null)
             {
                 Console.WriteLine("Livro não encontrado!");
@@ -127,12 +123,10 @@ namespace CRUDMongo.Services
                 .Set(b => b.Title, titulo)
                 .Set(b => b.AuthorId, idAutor)
                 .Set(b => b.Year, ano);
-            collectionBooks.UpdateOne(b => b.Id == id, update);
-            Console.WriteLine("Livro atualizado!");
-            Console.ReadKey();
+            await collectionBooks.UpdateOneAsync(b => b.Id == id, update);
         }
 
-        public void DeletarLivro()
+        public async void DeletarLivro()
         {
             Console.WriteLine("Digite o Id do livro que deseja deletar: ");
             string id = Console.ReadLine();
@@ -142,9 +136,7 @@ namespace CRUDMongo.Services
                 Console.WriteLine("Livro não encontrado!");
                 return;
             }
-            collectionBooks.DeleteOne(b => b.Id == id);
-            Console.WriteLine("Livro deletado!");
-            Console.ReadKey();
+            await collectionBooks.DeleteOneAsync(b => b.Id == id);
         }
     }
 }

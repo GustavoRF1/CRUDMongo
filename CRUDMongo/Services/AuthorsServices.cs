@@ -24,19 +24,17 @@ namespace CRUDMongo.Services
             return true;
         }
 
-        public void AdicionarAutor()
+        public async void AdicionarAutor()
         {
             Console.WriteLine("Digite o nome do autor: ");
             string nome = Console.ReadLine();
             Console.WriteLine("Digite o país do autor: ");
             string pais = Console.ReadLine();
             Authors autor = new Authors(nome, pais);
-            collectionAuthors.InsertOne(autor);
-            Console.WriteLine("Autor adicionado!");
-            Console.ReadKey();
+            await collectionAuthors.InsertOneAsync(autor);
         }
 
-        public void MultiplosAutores()
+        public async void MultiplosAutores()
         {
             Console.WriteLine("Digite a quantidade de autores que deseja adiconar: ");
             int quantidade = int.Parse(Console.ReadLine());
@@ -56,29 +54,28 @@ namespace CRUDMongo.Services
 
             foreach (var autor in autores)
             {
-                collectionAuthors.InsertOne(autor);
+                await collectionAuthors.InsertOneAsync(autor);
             }
-            Console.WriteLine("Autores adicionados!");
-            Console.ReadKey();
         }
 
-        public void ListarUmAutor()
+        public async void ListarUmAutor()
         {
             Console.WriteLine("Digite o Id do autor: ");
             string id = Console.ReadLine();
-            var autor = collectionAuthors.Find(a => a.Id == id).FirstOrDefault();
+            var autor = await collectionAuthors.FindAsync(a => a.Id == id).Result.FirstOrDefaultAsync();
             if (autor == null)
             {
                 Console.WriteLine("Autor não encontrado!");
                 return;
             }
+            Console.Clear();
             Console.WriteLine($"{autor}\n");
             Console.ReadKey();
         }
 
-        public void ListarTodosAutores()
+        public async void ListarTodosAutores()
         {
-            var autores = collectionAuthors.Find(_ => true).ToList();
+            var autores = await collectionAuthors.FindAsync(_ => true).Result.ToListAsync();
             foreach (var autor in autores)
             {
                 Console.WriteLine($"{autor}\n");
@@ -86,7 +83,7 @@ namespace CRUDMongo.Services
             Console.ReadKey();
         }
 
-        public void AtualizarAutor()
+        public async void AtualizarAutor()
         {
             Console.WriteLine("Digite o Id do autor que deseja atualizar: ");
             string id = Console.ReadLine();
@@ -95,7 +92,7 @@ namespace CRUDMongo.Services
                 return;
             }
 
-            var autor = collectionAuthors.Find(a => a.Id == id).FirstOrDefault();
+            var autor = await collectionAuthors.FindAsync(a => a.Id == id).Result.FirstOrDefaultAsync();
 
             string nome, pais;
 
@@ -113,11 +110,9 @@ namespace CRUDMongo.Services
                 .Set(a => a.Name, nome)
                 .Set(a => a.Country, pais);
             collectionAuthors.UpdateOne(a => a.Id == id, update);
-            Console.WriteLine("Autor atualizado!");
-            Console.ReadKey();
         }
 
-        public void DeletarAutor()
+        public async void DeletarAutor()
         {
             Console.WriteLine("Digite o Id do autor que deseja deletar: ");
             string id = Console.ReadLine();
@@ -125,9 +120,7 @@ namespace CRUDMongo.Services
             {
                 return;
             }
-            collectionAuthors.DeleteOne(a => a.Id == id);
-            Console.WriteLine("Autor deletado!");
-            Console.ReadKey();
+            await collectionAuthors.DeleteOneAsync(a => a.Id == id);
         }
     }
 }
