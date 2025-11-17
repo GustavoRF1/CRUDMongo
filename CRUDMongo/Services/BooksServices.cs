@@ -77,7 +77,7 @@ namespace CRUDMongo.Services
                 Console.WriteLine("Livro não encontrado!");
                 return;
             }
-            Console.WriteLine($"\n{livro}");
+            Console.WriteLine($"{livro}\n");
             Console.ReadKey();
         }
 
@@ -86,7 +86,7 @@ namespace CRUDMongo.Services
             var livros = collectionBooks.Find(_ => true).ToList();
             foreach (var livro in livros)
             {
-                Console.WriteLine($"\n{livro}");
+                Console.WriteLine($"{livro}\n");
             }
             Console.ReadKey();
         }

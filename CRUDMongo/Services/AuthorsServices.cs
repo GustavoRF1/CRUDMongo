@@ -72,7 +72,7 @@ namespace CRUDMongo.Services
                 Console.WriteLine("Autor não encontrado!");
                 return;
             }
-            Console.WriteLine($"\n{autor}");
+            Console.WriteLine($"{autor}\n");
             Console.ReadKey();
         }
 
@@ -81,7 +81,7 @@ namespace CRUDMongo.Services
             var autores = collectionAuthors.Find(_ => true).ToList();
             foreach (var autor in autores)
             {
-                Console.WriteLine($"\n{autor}");
+                Console.WriteLine($"{autor}\n");
             }
             Console.ReadKey();
         }
