@@ -38,16 +38,17 @@ documentos no MongoDB.
 ### ✔ Create
 
 -   Inserção de autor
--   Inserção de livro vinculado
+-   Inserção de livro
 
 ### ✔ Read
 
 -   Listar autores
--   Listar livros exibindo também o nome do autor
+-   Listar livros
 
 ### ✔ Update
 
 -   Atualizar informações de um autor
+-   Atualizar informações de um livro
 
 ### ✔ Delete
 
@@ -67,8 +68,8 @@ https://dotnet.microsoft.com/download
 ### 3. Clonar
 
 ``` bash
-git clone https://github.com/seu-usuario/seu-repositorio.git
-cd seu-repositorio
+git clone https://github.com/GustavoRF1/CRUDMongo.git
+cd CRUDMongo
 ```
 
 ### 4. Instalar driver MongoDB
@@ -82,7 +83,3 @@ dotnet add package MongoDB.Driver
 ``` bash
 dotnet run
 ```
-
-## 📄 Licença
-
-MIT License
