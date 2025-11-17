@@ -18,22 +18,20 @@ documentos no MongoDB.
 
 ### **Authors**
 
-  Campo     Tipo       Descrição
-  --------- ---------- --------------------------------------------
-  Id        ObjectId   Identificador único gerado automaticamente
-  Name      string     Nome do autor
-  Country   string     País de origem
+| Campo   | Tipo     | Descrição                                      |
+|---------|----------|------------------------------------------------|
+| Id      | ObjectId | Identificador único gerado automaticamente     |
+| Name    | string   | Nome do autor                                  |
+| Country | string   | País de origem                                 |
 
 ### **Books**
 
-  Campo      Tipo       Descrição
-  ---------- ---------- ---------------------
-  Id         ObjectId   Identificador único
-  Title      string     Título do livro
-  AuthorId   ObjectId   Referência ao autor
-  Year       int        Ano de publicação
-
-------------------------------------------------------------------------
+| Campo    | Tipo     | Descrição                                      |
+|----------|----------|------------------------------------------------|
+| Id       | ObjectId | Identificador único                            |
+| Title    | string   | Título do livro                                |
+| AuthorId | ObjectId | Referência ao autor (FK)                       |
+| Year     | int      | Ano de publicação                              |
 
 ## 🧠 Funcionalidades Implementadas (CRUD)
 
